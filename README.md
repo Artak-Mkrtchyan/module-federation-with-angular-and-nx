@@ -10,8 +10,13 @@
   - showcase-ui-kit: 5003
     - ui-kit: 8003
 
-Start
+# Start
 
-yarn install
+- yarn install
+- yarn run start:all
 
-yarn run start:all
+# Route paths
+
+- ui-kit (ui-kit)
+- boo-casino (brand-one)
+- bcasino-com (brand-two)
