@@ -1,0 +1,10 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  background-color: red;
+  padding: 20px;
+}
+
+.brand-one {
+  color: var(--shell);
+}

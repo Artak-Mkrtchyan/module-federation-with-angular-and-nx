@@ -27,12 +27,32 @@
     ]
   },
   "projects": {
+    "shell": {
+      "tags": []
+    },
+    "showcase-brand-one": {
+      "tags": []
+    },
+    "showcase-brand-two": {
+      "tags": []
+    },
+    "showcase-ui-kit": {
+      "tags": []
+    },
+    "brand-one": {
+      "tags": []
+    },
+    "brand-two": {
+      "tags": []
+    },
+    "ui-kit": {
+      "tags": []
+    },
     "micro": {
       "tags": []
     },
-    "micro-e2e": {
-      "tags": [],
-      "implicitDependencies": ["micro"]
+    "shared": {
+      "tags": []
     }
   }
 }

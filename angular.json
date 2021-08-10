@@ -1,6 +1,730 @@
 {
   "version": 1,
   "projects": {
+    "shell": {
+      "projectType": "application",
+      "root": "apps/shell",
+      "sourceRoot": "apps/shell/src",
+      "prefix": "micronx",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/shell",
+            "index": "apps/shell/src/index.html",
+            "main": "apps/shell/src/main.ts",
+            "polyfills": "apps/shell/src/polyfills.ts",
+            "tsConfig": "apps/shell/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": ["apps/shell/src/favicon.ico", "apps/shell/src/assets"],
+            "styles": ["apps/shell/src/styles.scss"],
+            "scripts": [],
+            "extraWebpackConfig": "apps/shell/webpack.config.js",
+            "commonChunk": false
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/shell/src/environments/environment.ts",
+                  "with": "apps/shell/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all",
+              "extraWebpackConfig": "apps/shell/webpack.prod.config.js"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "shell:build:production",
+              "extraWebpackConfig": "apps/shell/webpack.prod.config.js"
+            },
+            "development": {
+              "browserTarget": "shell:build:development"
+            }
+          },
+          "defaultConfiguration": "development",
+          "options": {
+            "browserTarget": "shell:",
+            "extraWebpackConfig": "apps/shell/webpack.config.js",
+            "port": 4200
+          }
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "shell:build",
+            "extraWebpackConfig": "apps/shell/webpack.config.js"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/shell/src/**/*.ts",
+              "apps/shell/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "outputs": ["coverage/apps/shell"],
+          "options": {
+            "jestConfig": "apps/shell/jest.config.js",
+            "passWithNoTests": true,
+            "extraWebpackConfig": "apps/shell/webpack.config.js"
+          }
+        }
+      }
+    },
+    "showcase-brand-one": {
+      "projectType": "application",
+      "root": "apps/showcase-brand-one",
+      "sourceRoot": "apps/showcase-brand-one/src",
+      "prefix": "micronx",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/showcase-brand-one",
+            "index": "apps/showcase-brand-one/src/index.html",
+            "main": "apps/showcase-brand-one/src/main.ts",
+            "polyfills": "apps/showcase-brand-one/src/polyfills.ts",
+            "tsConfig": "apps/showcase-brand-one/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/showcase-brand-one/src/favicon.ico",
+              "apps/showcase-brand-one/src/assets"
+            ],
+            "styles": ["apps/showcase-brand-one/src/styles.scss"],
+            "scripts": [],
+            "extraWebpackConfig": "apps/showcase-brand-one/webpack.config.js",
+            "commonChunk": false
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/showcase-brand-one/src/environments/environment.ts",
+                  "with": "apps/showcase-brand-one/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all",
+              "extraWebpackConfig": "apps/showcase-brand-one/webpack.prod.config.js"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "showcase-brand-one:build:production",
+              "extraWebpackConfig": "apps/showcase-brand-one/webpack.prod.config.js"
+            },
+            "development": {
+              "browserTarget": "showcase-brand-one:build:development"
+            }
+          },
+          "defaultConfiguration": "development",
+          "options": {
+            "extraWebpackConfig": "apps/showcase-brand-one/webpack.config.js",
+            "browserTarget": "showcase-brand-one:build:development",
+            "port": 5001
+          }
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "showcase-brand-one:build",
+            "extraWebpackConfig": "apps/showcase-brand-one/webpack.config.js"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/showcase-brand-one/src/**/*.ts",
+              "apps/showcase-brand-one/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "outputs": ["coverage/apps/showcase-brand-one"],
+          "options": {
+            "jestConfig": "apps/showcase-brand-one/jest.config.js",
+            "passWithNoTests": true,
+            "tsConfig": "apps/showcase-brand-one/tsconfig.app.json",
+            "extraWebpackConfig": "apps/showcase-brand-one/webpack.config.js"
+          }
+        }
+      }
+    },
+    "showcase-brand-two": {
+      "projectType": "application",
+      "root": "apps/showcase-brand-two",
+      "sourceRoot": "apps/showcase-brand-two/src",
+      "prefix": "micronx",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/showcase-brand-two",
+            "index": "apps/showcase-brand-two/src/index.html",
+            "main": "apps/showcase-brand-two/src/main.ts",
+            "polyfills": "apps/showcase-brand-two/src/polyfills.ts",
+            "tsConfig": "apps/showcase-brand-two/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/showcase-brand-two/src/favicon.ico",
+              "apps/showcase-brand-two/src/assets"
+            ],
+            "styles": ["apps/showcase-brand-two/src/styles.scss"],
+            "scripts": [],
+            "extraWebpackConfig": "apps/showcase-brand-two/webpack.config.js",
+            "commonChunk": false
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/showcase-brand-two/src/environments/environment.ts",
+                  "with": "apps/showcase-brand-two/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all",
+              "extraWebpackConfig": "apps/showcase-brand-two/webpack.prod.config.js"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "showcase-brand-two:build:production",
+              "extraWebpackConfig": "apps/showcase-brand-two/webpack.prod.config.js"
+            },
+            "development": {
+              "browserTarget": "showcase-brand-two:build:development"
+            }
+          },
+          "defaultConfiguration": "development",
+          "options": {
+            "extraWebpackConfig": "apps/showcase-brand-two/webpack.config.js",
+            "browserTarget": "showcase-brand-two:build:development",
+            "port": 5002
+          }
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "showcase-brand-two:build",
+            "extraWebpackConfig": "apps/showcase-brand-two/webpack.config.js"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/showcase-brand-two/src/**/*.ts",
+              "apps/showcase-brand-two/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "outputs": ["coverage/apps/showcase-brand-two"],
+          "options": {
+            "jestConfig": "apps/showcase-brand-two/jest.config.js",
+            "passWithNoTests": true,
+            "tsConfig": "apps/showcase-brand-two/tsconfig.app.json",
+            "extraWebpackConfig": "apps/showcase-brand-two/webpack.config.js"
+          }
+        }
+      }
+    },
+    "showcase-ui-kit": {
+      "projectType": "application",
+      "root": "apps/showcase-ui-kit",
+      "sourceRoot": "apps/showcase-ui-kit/src",
+      "prefix": "micronx",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/showcase-ui-kit",
+            "index": "apps/showcase-ui-kit/src/index.html",
+            "main": "apps/showcase-ui-kit/src/main.ts",
+            "polyfills": "apps/showcase-ui-kit/src/polyfills.ts",
+            "tsConfig": "apps/showcase-ui-kit/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/showcase-ui-kit/src/favicon.ico",
+              "apps/showcase-ui-kit/src/assets"
+            ],
+            "styles": ["apps/showcase-ui-kit/src/styles.scss"],
+            "scripts": [],
+            "extraWebpackConfig": "apps/showcase-ui-kit/webpack.config.js",
+            "commonChunk": false
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/showcase-ui-kit/src/environments/environment.ts",
+                  "with": "apps/showcase-ui-kit/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all",
+              "extraWebpackConfig": "apps/showcase-ui-kit/webpack.prod.config.js"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "showcase-ui-kit:build:production",
+              "extraWebpackConfig": "apps/showcase-ui-kit/webpack.prod.config.js"
+            },
+            "development": {
+              "browserTarget": "showcase-ui-kit:build:development"
+            }
+          },
+          "defaultConfiguration": "development",
+          "options": {
+            "extraWebpackConfig": "apps/showcase-ui-kit/webpack.config.js",
+            "browserTarget": "showcase-ui-kit:build:development",
+            "port": 5003
+          }
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "showcase-ui-kit:build",
+            "extraWebpackConfig": "apps/showcase-ui-kit/webpack.config.js"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/showcase-ui-kit/src/**/*.ts",
+              "apps/showcase-ui-kit/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "outputs": ["coverage/apps/showcase-ui-kit"],
+          "options": {
+            "jestConfig": "apps/showcase-ui-kit/jest.config.js",
+            "passWithNoTests": true,
+            "tsConfig": "apps/showcase-ui-kit/tsconfig.app.json",
+            "extraWebpackConfig": "apps/showcase-ui-kit/webpack.config.js"
+          }
+        }
+      }
+    },
+    "brand-one": {
+      "projectType": "application",
+      "root": "apps/brand-one",
+      "sourceRoot": "apps/brand-one/src",
+      "prefix": "micronx",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/brand-one",
+            "index": "apps/brand-one/src/index.html",
+            "main": "apps/brand-one/src/main.ts",
+            "polyfills": "apps/brand-one/src/polyfills.ts",
+            "tsConfig": "apps/brand-one/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/brand-one/src/favicon.ico",
+              "apps/brand-one/src/assets"
+            ],
+            "styles": ["apps/brand-one/src/styles.scss"],
+            "scripts": [],
+            "extraWebpackConfig": "apps/brand-one/webpack.config.js",
+            "commonChunk": false
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/brand-one/src/environments/environment.ts",
+                  "with": "apps/brand-one/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all",
+              "extraWebpackConfig": "apps/brand-one/webpack.prod.config.js"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "brand-one:build:production",
+              "extraWebpackConfig": "apps/brand-one/webpack.prod.config.js"
+            },
+            "development": {
+              "browserTarget": "brand-one:build:development"
+            }
+          },
+          "defaultConfiguration": "development",
+          "options": {
+            "extraWebpackConfig": "apps/brand-one/webpack.config.js",
+            "port": 8001
+          }
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "brand-one:build",
+            "extraWebpackConfig": "apps/brand-one/webpack.config.js"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/brand-one/src/**/*.ts",
+              "apps/brand-one/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "outputs": ["coverage/apps/brand-one"],
+          "options": {
+            "jestConfig": "apps/brand-one/jest.config.js",
+            "passWithNoTests": true,
+            "extraWebpackConfig": "apps/brand-one/webpack.config.js"
+          }
+        }
+      }
+    },
+    "brand-two": {
+      "projectType": "application",
+      "root": "apps/brand-two",
+      "sourceRoot": "apps/brand-two/src",
+      "prefix": "micronx",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/brand-two",
+            "index": "apps/brand-two/src/index.html",
+            "main": "apps/brand-two/src/main.ts",
+            "polyfills": "apps/brand-two/src/polyfills.ts",
+            "tsConfig": "apps/brand-two/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/brand-two/src/favicon.ico",
+              "apps/brand-two/src/assets"
+            ],
+            "styles": ["apps/brand-two/src/styles.scss"],
+            "scripts": [],
+            "extraWebpackConfig": "apps/brand-two/webpack.config.js",
+            "commonChunk": false
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/brand-two/src/environments/environment.ts",
+                  "with": "apps/brand-two/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all",
+              "extraWebpackConfig": "apps/brand-two/webpack.prod.config.js"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "brand-two:build:production",
+              "extraWebpackConfig": "apps/brand-two/webpack.prod.config.js"
+            },
+            "development": {
+              "browserTarget": "brand-two:build:development"
+            }
+          },
+          "defaultConfiguration": "development",
+          "options": {
+            "extraWebpackConfig": "apps/brand-two/webpack.config.js",
+            "port": 8002
+          }
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "brand-two:build",
+            "extraWebpackConfig": "apps/brand-two/webpack.config.js"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/brand-two/src/**/*.ts",
+              "apps/brand-two/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "outputs": ["coverage/apps/brand-two"],
+          "options": {
+            "jestConfig": "apps/brand-two/jest.config.js",
+            "passWithNoTests": true,
+            "extraWebpackConfig": "apps/brand-two/webpack.config.js"
+          }
+        }
+      }
+    },
+    "ui-kit": {
+      "projectType": "application",
+      "root": "apps/ui-kit",
+      "sourceRoot": "apps/ui-kit/src",
+      "prefix": "micronx",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/ui-kit",
+            "index": "apps/ui-kit/src/index.html",
+            "main": "apps/ui-kit/src/main.ts",
+            "polyfills": "apps/ui-kit/src/polyfills.ts",
+            "tsConfig": "apps/ui-kit/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": ["apps/ui-kit/src/favicon.ico", "apps/ui-kit/src/assets"],
+            "styles": ["apps/ui-kit/src/styles.scss"],
+            "scripts": [],
+            "extraWebpackConfig": "apps/ui-kit/webpack.config.js",
+            "commonChunk": false
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/ui-kit/src/environments/environment.ts",
+                  "with": "apps/ui-kit/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all",
+              "extraWebpackConfig": "apps/ui-kit/webpack.prod.config.js"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "ui-kit:build:production",
+              "extraWebpackConfig": "apps/ui-kit/webpack.prod.config.js"
+            },
+            "development": {
+              "browserTarget": "ui-kit:build:development"
+            }
+          },
+          "defaultConfiguration": "development",
+          "options": {
+            "extraWebpackConfig": "apps/ui-kit/webpack.config.js",
+            "browserTarget": "ui-kit:build:development",
+            "port": 8003
+          }
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "ui-kit:build",
+            "extraWebpackConfig": "apps/ui-kit/webpack.config.js"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/ui-kit/src/**/*.ts",
+              "apps/ui-kit/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "outputs": ["coverage/apps/ui-kit"],
+          "options": {
+            "jestConfig": "apps/ui-kit/jest.config.js",
+            "passWithNoTests": true,
+            "tsConfig": "apps/ui-kit/tsconfig.app.json",
+            "extraWebpackConfig": "apps/ui-kit/webpack.config.js"
+          }
+        }
+      }
+    },
     "micro": {
       "projectType": "application",
       "root": "apps/micro",
@@ -91,28 +815,19 @@
         }
       }
     },
-    "micro-e2e": {
-      "root": "apps/micro-e2e",
-      "sourceRoot": "apps/micro-e2e/src",
-      "projectType": "application",
+    "shared": {
+      "projectType": "library",
+      "root": "libs/shared",
+      "sourceRoot": "libs/shared/src",
+      "prefix": "micronx",
       "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/micro-e2e/cypress.json",
-            "tsConfig": "apps/micro-e2e/tsconfig.e2e.json",
-            "devServerTarget": "micro:serve:development"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "micro:serve:production"
-            }
-          }
-        },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/micro-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "libs/shared/src/**/*.ts",
+              "libs/shared/src/**/*.html"
+            ]
           }
         }
       }
